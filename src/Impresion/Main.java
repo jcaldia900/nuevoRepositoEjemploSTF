@@ -20,22 +20,36 @@ public class Main {
      */
     /*!!hay que realizar la clase siempre que se realice un array y demás*/
     public static void main(String[] args) {
-        ArrayList <Proceso> procesos= new ArrayList<Proceso>();
-       
-        // TODO code application logic here
-        for(int i=0;i<5;i++){
-             Proceso pi= new Proceso("P_"+i,(int)Math.floor(Math.random()*4+1)*1000);
-             procesos.add(pi);
+        
+       /*
+       preparaMicroprocesador();
+       PlanificadorFCFS.sirve();
+       */
+    	//Cambio 
+    	preparaMicroprocesadorSTF();
+        PlanificadorSTF.sirve();
+    } 
+    
+    public static void preparaMicroprocesadorFCFS(){
+        ArrayList<Proceso> procesos = new ArrayList<Proceso>();
+        
+        for (int i=1; i<=5; i++){
+        	Proceso pi = new Proceso("P_" + i, ((int) Math.floor(Math.random()*4+1)) * 1000);
+            procesos.add(pi);
         }
+        
         Collections.shuffle(procesos);
-        int i;
-        for(i=0;i<procesos.size();i++){
-             PlanificadorFCFS.putProceso(procesos.get(i));
-        };
-        PlanificadorFCFS.sirve();
         
-       
-        
+        for(Proceso p : procesos){
+             PlanificadorFCFS.putProceso(p);               
+        } 
     }
+    
+    private static void preparaMicroprocesadorSTF () {
+		for (int i = 1; i <= 5; i++) {
+			Proceso pi = new Proceso( "p" + i, ((int) Math.floor(Math.random()*4+1)) * 1000 );
+			PlanificadorSTF.put(pi);
+		}
+	}
     
 }
